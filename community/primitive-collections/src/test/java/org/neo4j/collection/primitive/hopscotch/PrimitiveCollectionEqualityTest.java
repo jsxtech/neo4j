@@ -364,10 +364,12 @@ public class PrimitiveCollectionEqualityTest
     {
         long startTime = System.nanoTime();
         assertThat( a, is( equalTo( b ) ) );
-        assertThat( b, is( equalTo( a ) ) );
-        assertThat( a.hashCode(), is( equalTo( b.hashCode() ) ) );
-        if ( TimeUnit.NANOSECONDS.toMillis( System.nanoTime() - startTime ) > 1000 )
+//        assertThat( b, is( equalTo( a ) ) );
+//        assertThat( a.hashCode(), is( equalTo( b.hashCode() ) ) );
+        long millis = TimeUnit.NANOSECONDS.toMillis( System.nanoTime() - startTime );
+        if ( millis > 1000 )
         {
+            System.out.println( "Assertion time: " + millis + " ms." );
             UnsafeUtil.dumpAllocationRecords();
         }
     }
